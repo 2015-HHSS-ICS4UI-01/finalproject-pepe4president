@@ -14,7 +14,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
-import com.mrlamont.Model.Mario;
+import com.mrlamont.Model.Wheely;
 import com.mrlamont.Model.World;
 import com.mrlamont.screens.WorldRenderer;
 
@@ -24,17 +24,13 @@ import com.mrlamont.screens.WorldRenderer;
  */
 public class MainGame implements Screen{
     
-    private World theWorld;
-    private Mario player;
-    private WorldRenderer renderer;
+   
    
     
     
     public MainGame(){
         
-        theWorld = new World();
-        player = theWorld.getPlayer();
-        renderer = new WorldRenderer(theWorld);
+        
         
     }
     
@@ -46,20 +42,12 @@ public class MainGame implements Screen{
 
     @Override
     public void render(float deltaTime) {
-        if(Gdx.input.isKeyPressed(Keys.D)){
-           player.setVelocityX(2f);
-        } else if(Gdx.input.isKeyPressed(Keys.A)){
-            player.setVelocityX(-2f);
-        }
-        
-        player.update(deltaTime);
-        
-        renderer.render(deltaTime);
+       
     }
 
     @Override
     public void resize(int width, int height) {
-       renderer.resize(width, height);
+       
     }
 
     @Override
