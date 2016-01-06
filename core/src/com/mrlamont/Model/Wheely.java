@@ -44,18 +44,19 @@ public class Wheely extends Entity{
     
     
     public void update(float delta){
-        //gravity
+        //Gravity
         acceleration.y = -9.8f;
         velocity.mulAdd(acceleration, delta);
        //Moving right
         if (velocity.x > 0){
             isFacingLeft = false;
             state = State.MOVING;
+            //Moving left
         } else if (velocity.x < 0){
             isFacingLeft = true;
             state = State.MOVING;
         }
-        
+        //Not moving
          else {
             state = State.STOPPED;
             stateTime = 0;
