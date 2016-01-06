@@ -1,0 +1,47 @@
+
+Wheely.png
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+Blue
+  rotate: false
+  xy: 0, 500
+  size: 400, 250
+  orig: 400, 250
+  offset: 0, 0
+  index: -1
+Green
+  rotate: false
+  xy: 0, 250
+  size: 400, 250
+  orig: 400, 250
+  offset: 0, 0
+  index: -1
+Orange
+  rotate: false
+  xy: 400, 500
+  size: 400, 250
+  orig: 400, 250
+  offset: 0, 0
+  index: -1
+Purple
+  rotate: false
+  xy: 0, 0
+  size: 400, 250
+  orig: 400, 250
+  offset: 0, 0
+  index: -1
+Red
+  rotate: false
+  xy: 400, 250
+  size: 400, 250
+  orig: 400, 250
+  offset: 0, 0
+  index: -1
+Yellow
+  rotate: false
+  xy: 400, 0
+  size: 400, 250
+  orig: 400, 250
+  offset: 0, 0
+  index: -1

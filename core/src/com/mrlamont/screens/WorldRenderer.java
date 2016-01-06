@@ -56,11 +56,41 @@ public class WorldRenderer {
     }
     
     public void render(float delta){
+        Gdx.gl20.glClearColor(0, 0, 0, 1);
+        Gdx.gl20.glClear(GL20.GL_COLOR_BUFFER_BIT);
+        
+        
+      
+        //update the camera
+        camera.position.x = Math.max(player.getX(), V_WIDTH/2);
+        camera.update();
+        
+        
+        //links the renderer to the camera
+        batch.setProjectionMatrix(camera.combined);
+        // tells the renderer this is the list
+        batch.begin();
+        
+        
         //DRAW
-        for (Block b: world.getBlocks()){
-            batch.draw(AssetManager.block, b.getX(), b.getY());
+       
+        
+        if (player.getState() == Wheely.State.STOPPED){
+            if (player.isFacingLeft()){
+                 batch.draw(AssetManager.wheelyStandL, player.getX(), player.getY());
+            } else {
+                batch.draw(AssetManager.wheelyStand, player.getX(), player.getY());
+            }
         }
+        
+        
+        //finished listing things to draw
+        batch.end();
     }
+    
+    
+    
+     
     
     public void resize(int width, int height){
           viewport.update(width, height);

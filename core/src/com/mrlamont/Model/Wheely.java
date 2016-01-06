@@ -35,21 +35,32 @@ public class Wheely extends Entity{
     
     public Wheely(float x,float y, float width, float height){
         super(x,y,width,height);
+        state =  State.STOPPED;
          velocity = new Vector2(0,0);
         acceleration = new Vector2(0,0);
         isFacingLeft = false;
-        
+        stateTime = 0;
     }
     
     
     public void update(float delta){
+        //gravity
+        acceleration.y = -9.8f;
+        velocity.mulAdd(acceleration, delta);
        //Moving right
         if (velocity.x > 0){
             isFacingLeft = false;
             state = State.MOVING;
-        
+        } else if (velocity.x < 0){
+            isFacingLeft = true;
+            state = State.MOVING;
         }
-       
+        
+         else {
+            state = State.STOPPED;
+            stateTime = 0;
+        }
+        stateTime += delta;
     }
     
     public void flip(){

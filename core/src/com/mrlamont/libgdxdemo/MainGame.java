@@ -23,13 +23,17 @@ import com.mrlamont.screens.WorldRenderer;
  * @author isles3536
  */
 public class MainGame implements Screen{
-    
+    private World theWorld;
+    private Wheely player;
+    private WorldRenderer renderer;
    
    
     
     
     public MainGame(){
-        
+        theWorld = new World();
+        player = theWorld.getPlayer();
+        renderer = new WorldRenderer(theWorld);
         
         
     }
@@ -42,12 +46,13 @@ public class MainGame implements Screen{
 
     @Override
     public void render(float deltaTime) {
-       
+        //draws the screen
+        renderer.render(deltaTime);
     }
 
     @Override
     public void resize(int width, int height) {
-       
+       renderer.resize(width,height);
     }
 
     @Override

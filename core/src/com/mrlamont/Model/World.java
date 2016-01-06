@@ -15,10 +15,9 @@ public class World {
     private Array<Block> blocks;
     
     public World(){
+       wheely = new Wheely(16,16, 16, 32);
        blocks = new Array<Block>();
        demoLevel();
-       
-       wheely = new Wheely(16,16, 16, 32);
     }
     
     private void demoLevel(){
