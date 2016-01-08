@@ -14,6 +14,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
+import com.mrlamont.Model.Block;
 import com.mrlamont.Model.Wheely;
 import com.mrlamont.Model.World;
 import com.mrlamont.screens.WorldRenderer;
@@ -46,6 +47,38 @@ public class MainGame implements Screen{
 
     @Override
     public void render(float deltaTime) {
+        if (Gdx.input.isKeyPressed(Keys.D)){
+             player.setVelocityX(2f);
+        } else if (Gdx.input.isKeyPressed(Keys.A)){
+            player.setVelocityX(-2f);
+        }
+        
+        
+        
+        //collisions
+        //go through each block
+        player.update(deltaTime);
+        for (Block b: theWorld.getBlocks()){
+            //if player is hitting a block
+            if (player.isColiding(b)){
+                //get overlapping amount
+                float overX = player.getOverlapX(b);
+                float overY = player.getOverlapY(b);
+                
+                //just fixing y if not moving
+                if (player.getVelocityX() == 0) {
+                    //player is above the block
+                    if (player.getY() > b.getY()){
+                        player.addToPosition(0, overY);
+                        player.setState(Wheely.State.STOPPED);
+                    } else {
+                        player.addToPosition(0, -overY);
+                    }
+                    player.setVelocityY(0);
+            }
+        }
+            
+     }
         //draws the screen
         renderer.render(deltaTime);
     }

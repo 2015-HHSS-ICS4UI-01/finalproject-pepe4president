@@ -16,6 +16,7 @@ import com.badlogic.gdx.utils.Array;
  */
 public class AssetManager {
     private static TextureAtlas atlas;
+    private static TextureAtlas atlas1;
     public static TextureRegion wheelyStand;
     public static TextureRegion wheelyStandL;
     public static TextureRegion wheelyFlipping;
@@ -24,11 +25,13 @@ public class AssetManager {
         
         public static void load(){
         atlas = new TextureAtlas("Wheely.pack");
+        atlas1 = new TextureAtlas("mario.pack");
+        block = atlas1.findRegion("stoneBlock");
         wheelyStand = atlas.findRegion("Green");
         wheelyStandL = new TextureRegion(wheelyStand);
         wheelyStandL.flip(true, false);
     }  
         
-    }
+}
     
 

@@ -12,9 +12,8 @@ import com.badlogic.gdx.math.Vector2;
  */
 public class Wheely extends Entity{
    private final float X_MAX_VEL = 2.0f;
-    private final float Y_MAX_VEL = 4.0f;
-    
-   
+   private final float Y_MAX_VEL = 4.0f;
+
     
     
     //State of Wheely
@@ -36,7 +35,7 @@ public class Wheely extends Entity{
     public Wheely(float x,float y, float width, float height){
         super(x,y,width,height);
         state =  State.STOPPED;
-         velocity = new Vector2(0,0);
+        velocity = new Vector2(0,0);
         acceleration = new Vector2(0,0);
         isFacingLeft = false;
         stateTime = 0;
@@ -45,8 +44,9 @@ public class Wheely extends Entity{
     
     public void update(float delta){
         //Gravity
-        acceleration.y = -9.8f;
+        acceleration.y = -50f;
         velocity.mulAdd(acceleration, delta);
+        addToPosition(velocity.x, velocity.y);
        //Moving right
         if (velocity.x > 0){
             isFacingLeft = false;
@@ -65,8 +65,12 @@ public class Wheely extends Entity{
     }
     
     public void flip(){
-        isFacingLeft = true;
-        state = State.FLIPPING;
+        if (state != State.MOVING && velocity.y == 0){
+            velocity.y = Y_MAX_VEL;
+            state = State.FLIPPING;
+            stateTime = 0;
+            isFacingLeft = true;
+        }
     }
     
     public void setVelocityX(float x){

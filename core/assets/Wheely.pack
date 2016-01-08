@@ -5,43 +5,43 @@ filter: Nearest,Nearest
 repeat: none
 Blue
   rotate: false
-  xy: 0, 500
-  size: 400, 250
-  orig: 400, 250
+  xy: 0, 445
+  size: 142, 89
+  orig: 142, 89
   offset: 0, 0
   index: -1
 Green
   rotate: false
-  xy: 0, 250
-  size: 400, 250
-  orig: 400, 250
+  xy: 0, 356
+  size: 142, 89
+  orig: 142, 89
   offset: 0, 0
   index: -1
 Orange
   rotate: false
-  xy: 400, 500
-  size: 400, 250
-  orig: 400, 250
+  xy: 0, 267
+  size: 142, 89
+  orig: 142, 89
   offset: 0, 0
   index: -1
 Purple
   rotate: false
-  xy: 0, 0
-  size: 400, 250
-  orig: 400, 250
+  xy: 0, 178
+  size: 142, 89
+  orig: 142, 89
   offset: 0, 0
   index: -1
 Red
   rotate: false
-  xy: 400, 250
-  size: 400, 250
-  orig: 400, 250
+  xy: 0, 89
+  size: 142, 89
+  orig: 142, 89
   offset: 0, 0
   index: -1
 Yellow
   rotate: false
-  xy: 400, 0
-  size: 400, 250
-  orig: 400, 250
+  xy: 0, 0
+  size: 142, 89
+  orig: 142, 89
   offset: 0, 0
   index: -1

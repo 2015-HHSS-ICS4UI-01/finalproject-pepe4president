@@ -73,7 +73,9 @@ public class WorldRenderer {
         
         
         //DRAW
-       
+        for (Block b: world.getBlocks()){
+            batch.draw(AssetManager.block, b.getX(), b.getY());
+        }
         
         if (player.getState() == Wheely.State.STOPPED){
             if (player.isFacingLeft()){
@@ -82,7 +84,7 @@ public class WorldRenderer {
                 batch.draw(AssetManager.wheelyStand, player.getX(), player.getY());
             }
         }
-        
+
         
         //finished listing things to draw
         batch.end();
