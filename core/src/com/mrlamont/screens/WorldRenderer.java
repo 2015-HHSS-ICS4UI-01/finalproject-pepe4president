@@ -77,14 +77,13 @@ public class WorldRenderer {
             batch.draw(AssetManager.block, b.getX(), b.getY());
         }
         
-        if (player.getState() == Wheely.State.STOPPED){
+        if (player.getState() == Wheely.State.STOPPED || player.getState() == Wheely.State.MOVING){
             if (player.isFacingLeft()){
                  batch.draw(AssetManager.wheelyStandL, player.getX(), player.getY());
             } else {
                 batch.draw(AssetManager.wheelyStand, player.getX(), player.getY());
             }
-        }
-
+        } 
         
         //finished listing things to draw
         batch.end();
