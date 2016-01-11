@@ -12,6 +12,7 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.mrlamont.Model.Block;
@@ -24,7 +25,7 @@ import com.mrlamont.screens.WorldRenderer;
  * @author isles3536
  */
 public class MainGame implements Screen {
-
+    private OrthographicCamera camera;
     private World theWorld;
     private Wheely player;
     private WorldRenderer renderer;
@@ -34,7 +35,7 @@ public class MainGame implements Screen {
         player = theWorld.getPlayer();
         renderer = new WorldRenderer(theWorld);
 
-
+ 
     }
 
     @Override
@@ -43,11 +44,19 @@ public class MainGame implements Screen {
 
     @Override
     public void render(float deltaTime) {
-        if (Gdx.input.isKeyPressed(Keys.D)) {
+        //Controls
+       if (Gdx.input.isKeyPressed(Keys.D)){
             player.setVelocityX(2f);
-        } else if (Gdx.input.isKeyPressed(Keys.A)) {
+        } else if (Gdx.input.isKeyPressed(Keys.A)){
             player.setVelocityX(-2f);
         }
+       if (Gdx.input.isKeyJustPressed(Keys.S)){
+           player.setVelocityX(0);
+           player.setState(Wheely.State.STOPPED);
+       }
+
+    
+
 
 
 

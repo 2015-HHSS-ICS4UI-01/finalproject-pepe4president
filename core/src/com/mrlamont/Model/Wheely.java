@@ -28,10 +28,7 @@ public class Wheely extends Entity{
     
     //animation state counter
     private float stateTime;
-  
-    
-    
-    
+      
     public Wheely(float x,float y, float width, float height){
         super(x,y,width,height);
         state =  State.STOPPED;
