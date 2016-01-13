@@ -10,6 +10,7 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.mrlamont.Model.Block;
@@ -71,7 +72,23 @@ public class WorldRenderer {
         // tells the renderer this is the list
         batch.begin();
         
-        
+    if(Gdx.input.isButtonPressed(Input.Buttons.LEFT)){
+       Vector3 mouseClick = new Vector3(Gdx.input.getX(), Gdx.input.getY(),0);
+       camera.unproject(mouseClick);
+
+        System.out.println("x: "+ mouseClick.x + "    y: " + mouseClick.y);
+        if(mouseClick.y <= player.getY() + 89 && mouseClick.y >= player.getY()  && mouseClick.x <= player.getX() + 149 && mouseClick.x >= player.getX() && player.isMoving() == false)
+        {
+            player.setVelocityX(2f);
+            player.setState(Wheely.State.MOVING);
+        } else if (mouseClick.y <= player.getY() + 89 && mouseClick.y >= player.getY()  && mouseClick.x <= player.getX() + 149 && mouseClick.x >= player.getX() && player.isMoving() == true){
+            player.setVelocityX(0);
+            player.setState(Wheely.State.STOPPED);
+        }
+    }
+            
+            
+            
         //DRAW
         for (Block b: world.getBlocks()){
             batch.draw(AssetManager.block, b.getX(), b.getY());

@@ -25,16 +25,19 @@ public class Wheely extends Entity{
     private Vector2 acceleration;
     //Which way Wheely is facing
     boolean isFacingLeft;
-    
     //animation state counter
     private float stateTime;
+    //is wheely moving
+    boolean moving;
       
+    
     public Wheely(float x,float y, float width, float height){
         super(x,y,width,height);
         state =  State.STOPPED;
         velocity = new Vector2(0,0);
         acceleration = new Vector2(0,0);
         isFacingLeft = false;
+        moving = false;
         stateTime = 0;
     }
     
@@ -48,17 +51,20 @@ public class Wheely extends Entity{
         if (velocity.x > 0){
             isFacingLeft = false;
             state = State.MOVING;
+            moving = true;
             //Moving left
         } else if (velocity.x < 0){
             isFacingLeft = true;
             state = State.MOVING;
+            moving = true;
         }
         //Not moving
          else {
             state = State.STOPPED;
-            stateTime = 0;
+            moving = false;
+            
         }
-        stateTime += delta;
+        
     }
     
     public void flip(){
@@ -100,6 +106,10 @@ public class Wheely extends Entity{
     }
     public boolean isFacingLeft(){
         return isFacingLeft;
+    }
+    
+    public boolean isMoving(){
+        return moving;
     }
     
 }
