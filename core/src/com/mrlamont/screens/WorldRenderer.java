@@ -72,6 +72,7 @@ public class WorldRenderer {
         // tells the renderer this is the list
         batch.begin();
         
+        //Left click makes Wheely move
     if(Gdx.input.isButtonPressed(Input.Buttons.LEFT)){
        Vector3 mouseClick = new Vector3(Gdx.input.getX(), Gdx.input.getY(),0);
        camera.unproject(mouseClick);
@@ -81,13 +82,22 @@ public class WorldRenderer {
         {
             player.setVelocityX(2f);
             player.setState(Wheely.State.MOVING);
-        } else if (mouseClick.y <= player.getY() + 89 && mouseClick.y >= player.getY()  && mouseClick.x <= player.getX() + 149 && mouseClick.x >= player.getX() && player.isMoving() == true){
+        } 
+    }
+    
+    //Right click makes Wheely stop
+    if (Gdx.input.isButtonPressed(Input.Buttons.RIGHT)){
+        Vector3 mouseClick = new Vector3(Gdx.input.getX(), Gdx.input.getY(),0);
+        camera.unproject(mouseClick);
+        
+         if (mouseClick.y <= player.getY() + 89 && mouseClick.y >= player.getY()  && mouseClick.x <= player.getX() + 149 && mouseClick.x >= player.getX() && player.isMoving() == true){
             player.setVelocityX(0);
             player.setState(Wheely.State.STOPPED);
         }
     }
+    
             
-            
+       
             
         //DRAW
         for (Block b: world.getBlocks()){
