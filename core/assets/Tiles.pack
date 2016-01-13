@@ -1,0 +1,61 @@
+
+Tiles.png
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+flag copy
+  rotate: false
+  xy: 1, 415
+  size: 420, 593
+  orig: 420, 593
+  offset: 0, 0
+  index: -1
+12563-clouds-1366x768-vector-wallpaper
+  rotate: false
+  xy: 423, 685
+  size: 509, 323
+  orig: 509, 323
+  offset: 0, 0
+  index: -1
+spring
+  rotate: false
+  xy: 1, 116
+  size: 261, 297
+  orig: 261, 297
+  offset: 0, 0
+  index: -1
+switch
+  rotate: false
+  xy: 423, 385
+  size: 192, 298
+  orig: 192, 298
+  offset: 0, 0
+  index: -1
+seamless_dirt_texture_by_hhh316
+  rotate: false
+  xy: 617, 458
+  size: 225, 225
+  orig: 225, 225
+  offset: 0, 0
+  index: -1
+collisionTiles
+  rotate: false
+  xy: 1, 1
+  size: 225, 113
+  orig: 225, 113
+  offset: 0, 0
+  index: -1
+button copy
+  rotate: false
+  xy: 264, 271
+  size: 142, 142
+  orig: 142, 142
+  offset: 0, 0
+  index: -1
+object
+  rotate: false
+  xy: 408, 233
+  size: 200, 150
+  orig: 200, 150
+  offset: 0, 0
+  index: -1

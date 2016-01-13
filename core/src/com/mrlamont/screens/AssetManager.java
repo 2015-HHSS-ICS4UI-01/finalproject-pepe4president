@@ -25,8 +25,8 @@ public class AssetManager {
         
         public static void load(){
         atlas = new TextureAtlas("Wheely.pack");
-        atlas1 = new TextureAtlas("mario.pack");
-        block = atlas1.findRegion("stoneBlock");
+        
+        
         wheelyStand = atlas.findRegion("Green");
         wheelyStandL = new TextureRegion(wheelyStand);
         wheelyStandL.flip(true, false);

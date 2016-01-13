@@ -44,7 +44,7 @@ public class Wheely extends Entity{
     
     public void update(float delta){
         //Gravity
-        acceleration.y = -50f;
+        //acceleration.y = -50f;
         velocity.mulAdd(acceleration, delta);
         addToPosition(velocity.x, velocity.y);
        //Moving right

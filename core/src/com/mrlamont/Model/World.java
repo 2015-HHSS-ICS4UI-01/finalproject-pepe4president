@@ -4,6 +4,12 @@
  */
 package com.mrlamont.Model;
 
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.maps.tiled.TiledMap;
+import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
+import com.badlogic.gdx.maps.tiled.TmxMapLoader;
+import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
+import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.utils.Array;
 
 /**
@@ -11,13 +17,18 @@ import com.badlogic.gdx.utils.Array;
  * @author isles3536
  */
 public class World {
+    private SpriteBatch batch;
     private Wheely wheely;
     private Array<Block> blocks;
     
+    
+    
     public World(){
-       wheely = new Wheely(16,400, 16, 32);
+       
+      wheely = new Wheely(16,400, 16, 32);
        blocks = new Array<Block>();
        demoLevel();
+      
     }
     
     private void demoLevel(){
