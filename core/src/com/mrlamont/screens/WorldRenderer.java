@@ -114,20 +114,44 @@ public class WorldRenderer {
         renderer.render();
         
         batch.begin();
+        
+        //Left click makes Wheely move
+    if(Gdx.input.isButtonPressed(Input.Buttons.LEFT)){
+       Vector3 mouseClick = new Vector3(Gdx.input.getX(), Gdx.input.getY(),0);
+       camera.unproject(mouseClick);
+
+        System.out.println("x: "+ mouseClick.x + "    y: " + mouseClick.y);
+        if(mouseClick.y <= player.getY() + 89 && mouseClick.y >= player.getY()  && mouseClick.x <= player.getX() + 149 && mouseClick.x >= player.getX() && player.isMoving() == false)
+        {
+            player.setVelocityX(2f);
+            player.setState(Wheely.State.MOVING);
+        } 
+    }
+    
+    //Right click makes Wheely stop
+    if (Gdx.input.isButtonPressed(Input.Buttons.RIGHT)){
+        Vector3 mouseClick = new Vector3(Gdx.input.getX(), Gdx.input.getY(),0);
+        camera.unproject(mouseClick);
+        
+         if (mouseClick.y <= player.getY() + 89 && mouseClick.y >= player.getY()  && mouseClick.x <= player.getX() + 149 && mouseClick.x >= player.getX() && player.isMoving() == true){
+            player.setVelocityX(0);
+            player.setState(Wheely.State.STOPPED);
+        }
+    }
+    
+            
+       
+            
         //DRAW
         
         
-        if (player.getState() == Wheely.State.STOPPED){
+        if (player.getState() == Wheely.State.STOPPED || player.getState() == Wheely.State.MOVING){
             if (player.isFacingLeft()){
                  batch.draw(AssetManager.wheelyStandL, player.getX(), player.getY());
             } else {
                 batch.draw(AssetManager.wheelyStand, player.getX(), player.getY());
             }
-        }
-        
-       
-        
-        
+        } 
         
         //finished listing things to draw
         batch.end();
