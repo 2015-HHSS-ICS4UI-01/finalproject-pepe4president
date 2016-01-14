@@ -28,8 +28,8 @@ import com.mrlamont.Model.World;
  */
 public class WorldRenderer {
     //The games virtual width and height
-    public final int V_WIDTH = 2000;
-    public final int V_HEIGHT = 1500;
+    public final int V_WIDTH = 4000;
+    public final int V_HEIGHT = 3000;
     private World world;
     private Wheely player;
     
@@ -41,7 +41,7 @@ public class WorldRenderer {
     private TiledMap map;
     private OrthogonalTiledMapRenderer renderer;
     private Array<Rectangle> collisionblocks;
-    private int levelWidth;
+    
     
     
     
@@ -67,7 +67,14 @@ public class WorldRenderer {
         int tileWidth = map.getProperties().get("tilewidth", Integer.class);
         int tileHeight = map.getProperties().get("tileheight", Integer.class);
         
-        levelWidth = mapWidth;
+        for(int x = 0; x<mapWidth;x++){
+            for(int y = 0; y<mapHeight;y++){
+                if(solidBlocks.getCell(x,y) != null){
+                    Rectangle a = new Rectangle(x,y,tileWidth,tileHeight);
+                    collisionblocks.add(a);
+                }
+            }
+        }
 
         
         
@@ -87,7 +94,12 @@ public class WorldRenderer {
         Gdx.gl20.glClearColor(0, 0, 0, 1);
         Gdx.gl20.glClear(GL20.GL_COLOR_BUFFER_BIT);
         
-        
+        for(Rectangle r: collisionblocks){
+            
+                
+            
+            
+        }
       
         //update the camera
         camera.position.x = Math.max(player.getX(), V_WIDTH/2);

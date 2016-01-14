@@ -25,7 +25,7 @@ public class World {
     
     public World(){
        
-      wheely = new Wheely(16,400, 16, 32);
+      wheely = new Wheely(16,2850, 16, 32);
        blocks = new Array<Block>();
        demoLevel();
       
