@@ -13,7 +13,7 @@ import com.badlogic.gdx.math.Vector2;
 public class Wheely extends Entity{
    private final float X_MAX_VEL = 2.0f;
    private final float Y_MAX_VEL = 4.0f;
-
+    
     
     
     //State of Wheely

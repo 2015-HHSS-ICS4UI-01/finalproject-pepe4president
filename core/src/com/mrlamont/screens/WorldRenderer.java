@@ -15,6 +15,7 @@ import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.math.Rectangle;
+import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
@@ -28,8 +29,8 @@ import com.mrlamont.Model.World;
  */
 public class WorldRenderer {
     //The games virtual width and height
-    public final int V_WIDTH = 4000;
-    public final int V_HEIGHT = 3000;
+    public final int V_WIDTH = 1500;
+    public final int V_HEIGHT = 1000;
     private World world;
     private Wheely player;
     
@@ -76,8 +77,7 @@ public class WorldRenderer {
             }
         }
 
-        
-        
+       
         
         // move the x position of the camera
         camera.position.x = V_WIDTH/2f;
@@ -94,15 +94,15 @@ public class WorldRenderer {
         Gdx.gl20.glClearColor(0, 0, 0, 1);
         Gdx.gl20.glClear(GL20.GL_COLOR_BUFFER_BIT);
         
-        for(Rectangle r: collisionblocks){
-            
+        
                 
             
             
-        }
+        
       
         //update the camera
         camera.position.x = Math.max(player.getX(), V_WIDTH/2);
+        camera.position.y = Math.max(player.getY(), V_HEIGHT/2);
         camera.update();
         
         

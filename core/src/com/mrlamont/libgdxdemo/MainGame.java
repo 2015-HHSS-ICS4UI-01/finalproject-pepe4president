@@ -44,17 +44,7 @@ public class MainGame implements Screen {
 
     @Override
     public void render(float deltaTime) {
-//        //Controls
-//       if (Gdx.input.isKeyPressed(Keys.D)&& player.getVelocityY() ==0){
-//            player.setVelocityX(2f);
-//        } else if (Gdx.input.isKeyPressed(Keys.A)&& player.getVelocityY() ==0){
-//            player.setVelocityX(-2f);
-//        }
-//       if (Gdx.input.isKeyJustPressed(Keys.S)){
-//           player.setVelocityX(0);
-//           player.setState(Wheely.State.STOPPED);
-//       }
-//       
+
        if (Gdx.input.isKeyJustPressed(Keys.F)){
            player.setVelocityY(15f);
            player.setState(Wheely.State.FLIPPING);
