@@ -68,11 +68,14 @@ public class WorldRenderer {
         int tileWidth = map.getProperties().get("tilewidth", Integer.class);
         int tileHeight = map.getProperties().get("tileheight", Integer.class);
         
+        
+        
         for(int x = 0; x<mapWidth;x++){
             for(int y = 0; y<mapHeight;y++){
                 if(solidBlocks.getCell(x,y) != null){
                     Rectangle a = new Rectangle(x,y,tileWidth,tileHeight);
                     collisionblocks.add(a);
+                    
                 }
             }
         }
