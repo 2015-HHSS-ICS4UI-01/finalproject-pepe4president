@@ -36,6 +36,9 @@ public abstract class Entity {
     public float getHeight(){
         return bounds.height;
     }
+    public Rectangle getBounds(){
+        return this.bounds;
+    }
             
     
     public boolean isColiding(Entity other){

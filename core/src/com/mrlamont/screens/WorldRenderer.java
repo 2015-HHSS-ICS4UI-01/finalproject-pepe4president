@@ -73,7 +73,7 @@ public class WorldRenderer {
         for(int x = 0; x<mapWidth;x++){
             for(int y = 0; y<mapHeight;y++){
                 if(solidBlocks.getCell(x,y) != null){
-                    Rectangle a = new Rectangle(x,y,tileWidth,tileHeight);
+                    Rectangle a = new Rectangle(x*32,y*32,tileWidth,tileHeight);
                     collisionblocks.add(a);
                     
                 }
@@ -97,9 +97,38 @@ public class WorldRenderer {
         Gdx.gl20.glClearColor(0, 0, 0, 1);
         Gdx.gl20.glClear(GL20.GL_COLOR_BUFFER_BIT);
         
-        
-                
-            
+         for (Rectangle r: collisionblocks) {
+
+            if (player.getBounds().overlaps(r)) {
+                float overX = Math.min(r.getX() + r.getWidth(), player.getX() + player.getWidth()) - Math.max(r.getX(), player.getX());
+                float overY = Math.min(r.getY() + r.getHeight(), player.getY() + player.getHeight()) - Math.max(r.getY(), player.getY());
+                if (player.getVelocityX() == 0) {
+                    if (player.getY() < r.getY()) {
+                        player.addToPosition(0, -overY);
+                    } else {
+                        player.addToPosition(0, overY);
+                        
+                    }
+                    player.setVelocityY(0);
+                }
+
+                if (overX < overY) {
+                    if (player.getX() < r.getX() ) {
+                        player.addToPosition(-overX, 0);
+                    } else {
+                        player.addToPosition(overX, 0);
+                    }
+                } else {
+                    if (player.getY() < r.getY() ) {
+                        player.addToPosition(0, -overY);
+                    } else {
+                        player.addToPosition(0, overY);
+                        
+                    }
+                    player.setVelocityY(0);
+                }
+            }
+        }
             
         
       

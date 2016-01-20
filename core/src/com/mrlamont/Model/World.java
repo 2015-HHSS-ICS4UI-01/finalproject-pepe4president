@@ -17,7 +17,7 @@ import com.badlogic.gdx.utils.Array;
  * @author isles3536
  */
 public class World {
-    private SpriteBatch batch;
+    
     private Wheely wheely;
     private Array<Block> blocks;
     
@@ -32,11 +32,7 @@ public class World {
     }
     
     private void demoLevel(){
-       for (int i = 0; i < 50; i ++){
-            //blocks along the floor
-            Block b = new Block(i*16, 0, 16,16);
-            blocks.add(b);
-        }
+       
     }
     
     public void update(float delta){
