@@ -54,7 +54,7 @@ public class WorldRenderer {
         viewport = new FitViewport(V_WIDTH,V_HEIGHT,camera);
         batch = new SpriteBatch();
         
-         
+        
         
        map = new TmxMapLoader().load("Level One.tmx");
        renderer = new OrthogonalTiledMapRenderer(map, batch);
@@ -79,7 +79,7 @@ public class WorldRenderer {
                 }
             }
         }
-
+        
        
         
         // move the x position of the camera
