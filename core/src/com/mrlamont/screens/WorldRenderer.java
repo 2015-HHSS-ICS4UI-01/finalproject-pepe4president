@@ -42,6 +42,7 @@ public class WorldRenderer {
     private TiledMap map;
     private OrthogonalTiledMapRenderer renderer;
     private Array<Rectangle> collisionblocks;
+    private Array<Rectangle> interactBlocks;
     
     
     
@@ -61,6 +62,7 @@ public class WorldRenderer {
        
        collisionblocks = new Array<Rectangle>();
        TiledMapTileLayer solidBlocks = (TiledMapTileLayer)map.getLayers().get("Colision");
+       TiledMapTileLayer intBlocks = (TiledMapTileLayer)map.getLayers().get("Interact Colisions");
        
        
         int mapWidth = map.getProperties().get("width", Integer.class);
@@ -75,6 +77,15 @@ public class WorldRenderer {
                 if(solidBlocks.getCell(x,y) != null){
                     Rectangle a = new Rectangle(x*32,y*32,tileWidth,tileHeight);
                     collisionblocks.add(a);
+                    
+                }
+            }
+        }
+         for(int x = 0; x<mapWidth;x++){
+            for(int y = 0; y<mapHeight;y++){
+                if(intBlocks.getCell(x,y) != null){
+                    Rectangle a = new Rectangle(x*32,y*32,tileWidth,tileHeight);
+                    interactBlocks.add(a);
                     
                 }
             }
@@ -98,6 +109,40 @@ public class WorldRenderer {
         Gdx.gl20.glClear(GL20.GL_COLOR_BUFFER_BIT);
         
          for (Rectangle r: collisionblocks) {
+
+            if (player.getBounds().overlaps(r)) {
+                float overX = Math.min(r.getX() + r.getWidth(), player.getX() + player.getWidth()) - Math.max(r.getX(), player.getX());
+                float overY = Math.min(r.getY() + r.getHeight(), player.getY() + player.getHeight()) - Math.max(r.getY(), player.getY());
+                if (player.getVelocityX() == 0) {
+                    if (player.getY() < r.getY()) {
+                        player.addToPosition(0, -overY);
+                    } else {
+                        player.addToPosition(0, overY);
+                        
+                    }
+                    player.setVelocityY(0);
+                }
+
+                if (overX < overY) {
+                    if (player.getX() < r.getX() ) {
+                        player.addToPosition(-overX, 0);
+                    } else {
+                        player.addToPosition(overX, 0);
+                    }
+                } else {
+                    if (player.getY() < r.getY() ) {
+                        player.addToPosition(0, -overY);
+                    } else {
+                        player.addToPosition(0, overY);
+                        
+                    }
+                    player.setVelocityY(0);
+                }
+            }
+        }
+         
+         
+         for (Rectangle r: interactBlocks) {
 
             if (player.getBounds().overlaps(r)) {
                 float overX = Math.min(r.getX() + r.getWidth(), player.getX() + player.getWidth()) - Math.max(r.getX(), player.getX());
