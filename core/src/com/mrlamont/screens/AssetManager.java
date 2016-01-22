@@ -21,15 +21,18 @@ public class AssetManager {
     public static TextureRegion wheelyStandL;
     public static TextureRegion wheelyFlipping;
     public  static TextureRegion block;
+    public static TextureRegion bridge;
         
         
         public static void load(){
         atlas = new TextureAtlas("Wheely.pack");
-        
+        atlas1 = new TextureAtlas("Tiles.pack");
         
         wheelyStand = atlas.findRegion("Green");
         wheelyStandL = new TextureRegion(wheelyStand);
         wheelyStandL.flip(true, false);
+        
+        block = atlas1.findRegion("object");
     }  
         
 }

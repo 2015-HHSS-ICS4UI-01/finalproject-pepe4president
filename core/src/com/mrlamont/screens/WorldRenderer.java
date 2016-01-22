@@ -44,6 +44,7 @@ public class WorldRenderer {
     private Array<Rectangle> collisionblocks;
     private Array<Rectangle> interactBlocks;
     
+    private Boolean isButtonPressed;
     
     
     
@@ -62,7 +63,7 @@ public class WorldRenderer {
        
        collisionblocks = new Array<Rectangle>();
        TiledMapTileLayer solidBlocks = (TiledMapTileLayer)map.getLayers().get("Colision");
-       TiledMapTileLayer intBlocks = (TiledMapTileLayer)map.getLayers().get("Interact Colisions");
+       
        
        
         int mapWidth = map.getProperties().get("width", Integer.class);
@@ -81,15 +82,7 @@ public class WorldRenderer {
                 }
             }
         }
-         for(int x = 0; x<mapWidth;x++){
-            for(int y = 0; y<mapHeight;y++){
-                if(intBlocks.getCell(x,y) != null){
-                    Rectangle a = new Rectangle(x*32,y*32,tileWidth,tileHeight);
-                    interactBlocks.add(a);
-                    
-                }
-            }
-        }
+         
         
        
         
@@ -142,38 +135,7 @@ public class WorldRenderer {
         }
          
          
-         for (Rectangle r: interactBlocks) {
-
-            if (player.getBounds().overlaps(r)) {
-                float overX = Math.min(r.getX() + r.getWidth(), player.getX() + player.getWidth()) - Math.max(r.getX(), player.getX());
-                float overY = Math.min(r.getY() + r.getHeight(), player.getY() + player.getHeight()) - Math.max(r.getY(), player.getY());
-                if (player.getVelocityX() == 0) {
-                    if (player.getY() < r.getY()) {
-                        player.addToPosition(0, -overY);
-                    } else {
-                        player.addToPosition(0, overY);
-                        
-                    }
-                    player.setVelocityY(0);
-                }
-
-                if (overX < overY) {
-                    if (player.getX() < r.getX() ) {
-                        player.addToPosition(-overX, 0);
-                    } else {
-                        player.addToPosition(overX, 0);
-                    }
-                } else {
-                    if (player.getY() < r.getY() ) {
-                        player.addToPosition(0, -overY);
-                    } else {
-                        player.addToPosition(0, overY);
-                        
-                    }
-                    player.setVelocityY(0);
-                }
-            }
-        }
+        
             
         
       
@@ -192,6 +154,8 @@ public class WorldRenderer {
         
         batch.begin();
         
+        
+        
         //Left click makes Wheely move
     if(Gdx.input.isButtonPressed(Input.Buttons.LEFT)){
        Vector3 mouseClick = new Vector3(Gdx.input.getX(), Gdx.input.getY(),0);
@@ -203,7 +167,18 @@ public class WorldRenderer {
             player.setVelocityX(2f);
             player.setState(Wheely.State.MOVING);
         } 
+        if(mouseClick.y <= 2811 && mouseClick.y >= 2714  && mouseClick.x <= 952 && mouseClick.x >= 850 ){
+            isButtonPressed = true;
+        }
+        
+            
+            batch.draw(AssetManager.block,448 , 2698);
+            batch.draw(AssetManager.block,600 , 2698);
+        
+        
     }
+        
+    
     
     //Right click makes Wheely stop
     if (Gdx.input.isButtonPressed(Input.Buttons.RIGHT)){

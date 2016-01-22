@@ -32,7 +32,7 @@ public class World {
     }
     
     private void demoLevel(){
-       
+       blocks.add(new Block(448,2698,352,150));
     }
     
     public void update(float delta){
