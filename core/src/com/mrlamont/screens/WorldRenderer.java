@@ -20,6 +20,7 @@ import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.mrlamont.Model.Block;
+import com.mrlamont.Model.TitleScreen;
 import com.mrlamont.Model.Wheely;
 import com.mrlamont.Model.World;
 
@@ -37,16 +38,13 @@ public class WorldRenderer {
     private Viewport viewport;
     private OrthographicCamera camera;
     private SpriteBatch batch;
-    
-    
+    private TitleScreen screen;
     private TiledMap map;
     private OrthogonalTiledMapRenderer renderer;
     private Array<Rectangle> collisionblocks;
     private Array<Rectangle> interactBlocks;
-    
-    private Boolean isButtonPressed;
-    
-    
+    private boolean isbuttonpressed;
+    private boolean switchflipped;
     
     public WorldRenderer(World w){
         world = w;
@@ -83,6 +81,8 @@ public class WorldRenderer {
             }
         }
          
+
+            
         
        
         
@@ -156,24 +156,41 @@ public class WorldRenderer {
         
         
         
-        //Left click makes Wheely move
+        
     if(Gdx.input.isButtonPressed(Input.Buttons.LEFT)){
        Vector3 mouseClick = new Vector3(Gdx.input.getX(), Gdx.input.getY(),0);
        camera.unproject(mouseClick);
 
         System.out.println("x: "+ mouseClick.x + "    y: " + mouseClick.y);
+        //Left click makes Wheely move
         if(mouseClick.y <= player.getY() + 89 && mouseClick.y >= player.getY()  && mouseClick.x <= player.getX() + 149 && mouseClick.x >= player.getX() && player.isMoving() == false)
         {
             player.setVelocityX(2f);
             player.setState(Wheely.State.MOVING);
         } 
+        if(mouseClick.y <= player.getY() + 89 && mouseClick.y >= player.getY()  && mouseClick.x <= player.getX() + 149 && mouseClick.x >= player.getX() && player.isMoving() == false && player.isFacingLeft())
+        {
+            player.setVelocityX(-2f);
+            player.setState(Wheely.State.MOVING);
+        } 
+        //Make bridge appear
         if(mouseClick.y <= 2811 && mouseClick.y >= 2714  && mouseClick.x <= 952 && mouseClick.x >= 850 ){
-            isButtonPressed = true;
+            isbuttonpressed = true;
         }
         
-            
-            batch.draw(AssetManager.block,448 , 2698);
-            batch.draw(AssetManager.block,600 , 2698);
+        //flip the switch
+        if(mouseClick.y <= 2693.8335 && mouseClick.y >= 2629.2502  && mouseClick.x <= 1901.7502 && mouseClick.x >= 1878.3127 ){
+            switchflipped = true;
+        }
+        
+        if(mouseClick.y <= 1211.2283 && mouseClick.y >= 1018.53955  && mouseClick.x <= 3099.032 && mouseClick.x >= 2911.5317 && player.getX()>= 2911.5317 && player.getX() <= 3099.032 && player.getY() >=1018.53955 && player.getY() <=2211.2283){
+            if (player.getVelocityY() == 0){
+           player.setState(Wheely.State.FLIPPING);
+           player.setVelocityY(15f);
+           }
+        }
+        
+           
         
         
     }
@@ -191,19 +208,91 @@ public class WorldRenderer {
         }
     }
     
+    
             
        
             
         //DRAW
+    
+    //Draw bridge if the button is pressed
+    if (isbuttonpressed == true){
+            batch.draw(AssetManager.block,448 , 2698);
+            batch.draw(AssetManager.block,600 , 2698);
+            world.update(delta);
+    }
         
-        
-        if (player.getState() == Wheely.State.STOPPED || player.getState() == Wheely.State.MOVING){
+    if (switchflipped == true){
+        batch.draw(AssetManager.theswitchFlip, 1793, 2470);
+    }
+
+
+    
+        //Wheely green
+        if (TitleScreen.isGreen() == true){
+        if (player.getState() == Wheely.State.STOPPED|| player.getState() == Wheely.State.MOVING){
             if (player.isFacingLeft()){
-                 batch.draw(AssetManager.wheelyStandL, player.getX(), player.getY());
+                 batch.draw(AssetManager.wheelyGreenL, player.getX(), player.getY());
             } else {
-                batch.draw(AssetManager.wheelyStand, player.getX(), player.getY());
+                batch.draw(AssetManager.wheelyGreen, player.getX(), player.getY());
             }
-        } 
+        }
+        }
+        
+        
+        //Wheely red
+        if (TitleScreen.isRed() == true){
+         if (player.getState() == Wheely.State.STOPPED|| player.getState() == Wheely.State.MOVING){
+            if (player.isFacingLeft()){
+                 batch.draw(AssetManager.wheelyRedL, player.getX(), player.getY());
+            } else {
+                batch.draw(AssetManager.wheelyRed, player.getX(), player.getY());
+            }
+        }
+        }
+        
+        //Wheely Orange
+        if (TitleScreen.isOrange() == true){
+         if (player.getState() == Wheely.State.STOPPED|| player.getState() == Wheely.State.MOVING){
+            if (player.isFacingLeft()){
+                 batch.draw(AssetManager.wheelyOrangeL, player.getX(), player.getY());
+            } else {
+                batch.draw(AssetManager.wheelyOrange, player.getX(), player.getY());
+            }
+        }
+        }
+        
+        //Wheely Yellow
+        if (TitleScreen.isYellow() == true){
+         if (player.getState() == Wheely.State.STOPPED|| player.getState() == Wheely.State.MOVING){
+            if (player.isFacingLeft()){
+                 batch.draw(AssetManager.wheelyYellowL, player.getX(), player.getY());
+            } else {
+                batch.draw(AssetManager.wheelyYellow, player.getX(), player.getY());
+            }
+        }
+        }
+        
+        //Wheely Blue
+        if (TitleScreen.isBlue() == true){
+         if (player.getState() == Wheely.State.STOPPED|| player.getState() == Wheely.State.MOVING){
+            if (player.isFacingLeft()){
+                 batch.draw(AssetManager.wheelyBlueL, player.getX(), player.getY());
+            } else {
+                batch.draw(AssetManager.wheelyBlue, player.getX(), player.getY());
+            }
+        }
+        }
+        
+        //Wheely Purple
+        if (TitleScreen.isPurple() == true){
+         if (player.getState() == Wheely.State.STOPPED|| player.getState() == Wheely.State.MOVING){
+            if (player.isFacingLeft()){
+                 batch.draw(AssetManager.wheelyPurpleL, player.getX(), player.getY());
+            } else {
+                batch.draw(AssetManager.wheelyPurple, player.getX(), player.getY());
+            }
+        }
+        }
         
         //finished listing things to draw
         batch.end();
@@ -216,7 +305,6 @@ public class WorldRenderer {
     public void resize(int width, int height){
           viewport.update(width, height);
     }
-    
-    
-    
+ 
+   
 }

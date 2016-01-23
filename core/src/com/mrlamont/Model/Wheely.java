@@ -53,7 +53,7 @@ public class Wheely extends Entity{
             state = State.MOVING;
             moving = true;
             //Moving left
-        } else if (velocity.x < 0){
+        } else if (velocity.x < 0 || state == State.FLIPPING){
             isFacingLeft = true;
             state = State.MOVING;
             moving = true;
@@ -67,14 +67,13 @@ public class Wheely extends Entity{
         
     }
     
-    public void flip(){
-        if (state != State.MOVING && velocity.y == 0){
-            velocity.y = Y_MAX_VEL;
-            state = State.FLIPPING;
-            stateTime = 0;
-            isFacingLeft = true;
-        }
-    }
+//    public void flip(){
+//        if (state != State.FLIPPING && velocity.y == 0){
+//            velocity.y = Y_MAX_VEL;
+//            state = State.FLIPPING;
+//            stateTime = 0;
+//        }
+//    }
     
     public void setVelocityX(float x){
        velocity.x = x;

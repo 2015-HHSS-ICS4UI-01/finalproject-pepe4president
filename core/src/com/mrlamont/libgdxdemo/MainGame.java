@@ -16,6 +16,7 @@ import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.mrlamont.Model.Block;
+import com.mrlamont.Model.TitleScreen;
 import com.mrlamont.Model.Wheely;
 import com.mrlamont.Model.World;
 import com.mrlamont.screens.WorldRenderer;
@@ -29,13 +30,14 @@ public class MainGame implements Screen {
     private World theWorld;
     private Wheely player;
     private WorldRenderer renderer;
-
+    private TitleScreen screen;
+    private boolean startgame = false;
+    private boolean endgame = false;
     public MainGame() {
         theWorld = new World();
         player = theWorld.getPlayer();
         renderer = new WorldRenderer(theWorld);
-
- 
+        screen = new TitleScreen();
     }
 
     @Override
@@ -44,24 +46,27 @@ public class MainGame implements Screen {
 
     @Override
     public void render(float deltaTime) {
+        if (TitleScreen.isGreen() == true || TitleScreen.isRed() == true || TitleScreen.isOrange() == true || TitleScreen.isYellow() == true|| TitleScreen.isBlue() == true || TitleScreen.isPurple() == true){
+            startgame = true;
+        }
+         if (startgame == false){
+            screen.render(deltaTime);
+        }
+        
+        
+        
+        
+        else{
+ 
+         if (player.getX() >= 1335.8125 && player.getX() <= 1845.3129 && player.getY() >= 1198.321 && player.getY() <=1459.8049){
+             player.setVelocityX(-20);
+         }
+         
+         if (player.getX() >= 89.06251 && player.getX() <= 248.43756 && player.getY() >= 708.1668 && player.getY() <=783.1668){
+            endgame = true;
+            screen.endScreen(deltaTime);
+        } else {
 
-       if (Gdx.input.isKeyJustPressed(Keys.F)){
-           player.setVelocityY(15f);
-           player.setState(Wheely.State.FLIPPING);
-       }
-
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-    
         //collisions
         //go through each block
         player.update(deltaTime);
@@ -109,6 +114,9 @@ public class MainGame implements Screen {
         }
         //draws the screen
         renderer.render(deltaTime);
+         }
+         
+    }
     }
 
     @Override
