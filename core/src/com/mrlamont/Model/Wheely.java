@@ -67,13 +67,6 @@ public class Wheely extends Entity{
         
     }
     
-//    public void flip(){
-//        if (state != State.FLIPPING && velocity.y == 0){
-//            velocity.y = Y_MAX_VEL;
-//            state = State.FLIPPING;
-//            stateTime = 0;
-//        }
-//    }
     
     public void setVelocityX(float x){
        velocity.x = x;

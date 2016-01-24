@@ -20,11 +20,11 @@ import com.mrlamont.screens.AssetManager;
 
 /**
  *
- * @author Erman
+ * @author dinse0649
  */
 public class TitleScreen {
-  private SpriteBatch batch;
-    private ShapeRenderer g;
+private SpriteBatch batch;
+private ShapeRenderer g;
 public final int V_WIDTH = 800;
 public final int V_HEIGHT = 600;
 private Viewport viewport;
@@ -62,7 +62,7 @@ public static boolean purple = false;
     g.rect(0, 0, 110, 600);
     g.end();
     
-        //draw different coloured Wheely's  on screen
+        //draw different coloured Wheelys on screen
         batch.begin();
         batch.draw(AssetManager.wheelyYellow, 190, -1);
         batch.draw(AssetManager.wheelyOrange, 90, -1);
@@ -74,7 +74,7 @@ public static boolean purple = false;
     
         
     
-    
+    //If a certain colour is left clicked, that colouro of Wheely is selected
            if(Gdx.input.isButtonPressed(Input.Buttons.LEFT)){
        Vector3 mouseClick = new Vector3(Gdx.input.getX(), Gdx.input.getY(),0);
        camera.unproject(mouseClick);
@@ -112,15 +112,13 @@ public static boolean purple = false;
 
       
 }
-      
+      //The end screen
       public void endScreen(float delta){
           Gdx.gl20.glClearColor(0, 0, 0, 1);
-    Gdx.gl20.glClear(GL20.GL_COLOR_BUFFER_BIT);
+          Gdx.gl20.glClear(GL20.GL_COLOR_BUFFER_BIT);
           batch.begin();
           batch.draw(AssetManager.flag, 190, -1);
-          batch.end();
-         
-          
+          batch.end();  
       }
       
       public static boolean isGreen(){

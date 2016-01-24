@@ -8,7 +8,6 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
@@ -19,7 +18,6 @@ import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
-import com.mrlamont.Model.Block;
 import com.mrlamont.Model.TitleScreen;
 import com.mrlamont.Model.Wheely;
 import com.mrlamont.Model.World;
@@ -44,7 +42,9 @@ public class WorldRenderer {
     private Array<Rectangle> collisionblocks;
     private Array<Rectangle> interactBlocks;
     private boolean isbuttonpressed;
-    private boolean switchflipped;
+    private static boolean switchflipped = false;
+    
+    
     
     public WorldRenderer(World w){
         world = w;
@@ -156,12 +156,12 @@ public class WorldRenderer {
         
         
         
-        
+        //Left click
     if(Gdx.input.isButtonPressed(Input.Buttons.LEFT)){
        Vector3 mouseClick = new Vector3(Gdx.input.getX(), Gdx.input.getY(),0);
        camera.unproject(mouseClick);
 
-        System.out.println("x: "+ mouseClick.x + "    y: " + mouseClick.y);
+//        System.out.println("x: "+ mouseClick.x + "    y: " + mouseClick.y);
         //Left click makes Wheely move
         if(mouseClick.y <= player.getY() + 89 && mouseClick.y >= player.getY()  && mouseClick.x <= player.getX() + 149 && mouseClick.x >= player.getX() && player.isMoving() == false)
         {
@@ -177,12 +177,8 @@ public class WorldRenderer {
         if(mouseClick.y <= 2811 && mouseClick.y >= 2714  && mouseClick.x <= 952 && mouseClick.x >= 850 ){
             isbuttonpressed = true;
         }
-        
-        //flip the switch
-        if(mouseClick.y <= 2693.8335 && mouseClick.y >= 2629.2502  && mouseClick.x <= 1901.7502 && mouseClick.x >= 1878.3127 ){
-            switchflipped = true;
-        }
-        
+         
+        //Flip Wheely
         if(mouseClick.y <= 1211.2283 && mouseClick.y >= 1018.53955  && mouseClick.x <= 3099.032 && mouseClick.x >= 2911.5317 && player.getX()>= 2911.5317 && player.getX() <= 3099.032 && player.getY() >=1018.53955 && player.getY() <=2211.2283){
             if (player.getVelocityY() == 0){
            player.setState(Wheely.State.FLIPPING);
@@ -190,18 +186,20 @@ public class WorldRenderer {
            }
         }
         
-           
-        
-        
+        //flip the switch
+        if(mouseClick.y <= 2693.8335 && mouseClick.y >= 2629.2502  && mouseClick.x <= 1901.7502 && mouseClick.x >= 1878.3127 ){
+            switchflipped = true;
+        } 
+              
     }
         
     
     
-    //Right click makes Wheely stop
+    //Right click
     if (Gdx.input.isButtonPressed(Input.Buttons.RIGHT)){
         Vector3 mouseClick = new Vector3(Gdx.input.getX(), Gdx.input.getY(),0);
         camera.unproject(mouseClick);
-        
+        //Makes Wheely stop
          if (mouseClick.y <= player.getY() + 89 && mouseClick.y >= player.getY()  && mouseClick.x <= player.getX() + 149 && mouseClick.x >= player.getX() && player.isMoving() == true){
             player.setVelocityX(0);
             player.setState(Wheely.State.STOPPED);
@@ -224,9 +222,7 @@ public class WorldRenderer {
     if (switchflipped == true){
         batch.draw(AssetManager.theswitchFlip, 1793, 2470);
     }
-
-
-    
+     
         //Wheely green
         if (TitleScreen.isGreen() == true){
         if (player.getState() == Wheely.State.STOPPED|| player.getState() == Wheely.State.MOVING){
@@ -301,10 +297,21 @@ public class WorldRenderer {
     
     
      
-    
+    /**
+     * 
+     * @param width of screen
+     * @param height of screen
+     */
     public void resize(int width, int height){
           viewport.update(width, height);
     }
  
+    /**
+     * Check if the switch is flipped
+     * @return the state of the switch
+     */
+    public static boolean switchflipped(){
+        return switchflipped;
+    }
    
 }

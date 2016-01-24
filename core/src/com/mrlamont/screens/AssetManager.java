@@ -4,11 +4,8 @@
  */
 package com.mrlamont.screens;
 
-import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
-import com.badlogic.gdx.graphics.g2d.TextureAtlas.AtlasRegion;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
-import com.badlogic.gdx.utils.Array;
 
 /**
  * 
@@ -38,14 +35,15 @@ public class AssetManager {
         
         
         public static void load(){
+        //All colours of Wheely
         atlas = new TextureAtlas("Wheely.pack");
+        //Environment related stuff
         atlas1 = new TextureAtlas("Tiles.pack");
         
-         //Green Wheely
+        //Green Wheely
         wheelyGreen = atlas.findRegion("Green");
         wheelyGreenL = new TextureRegion(wheelyGreen);
         wheelyGreenL.flip(true, false);
-        
         
         //Red Wheely
         wheelyRed = atlas.findRegion("Red");
